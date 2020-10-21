@@ -11,6 +11,9 @@ public sealed class WebCamSelector : MonoBehaviour
 	private WebCamTexture _webCamTexture;
 
 	[SerializeField] Renderer renderer;
+	//[SerializeField] RawImage rawImage;
+
+	[SerializeField] ColorPickerTriangle colorPicker;
 
     // Start is called before the first frame update
     void Start()
@@ -40,11 +43,16 @@ public sealed class WebCamSelector : MonoBehaviour
 	{
 		_webCamTexture = new WebCamTexture(deviceName);
 		renderer.material.mainTexture = _webCamTexture;
+		//rawImage.texture = _webCamTexture;
 		_webCamTexture.Play();
 	}
 
     // Update is called once per frame
     void Update()
     {
+		if (colorPicker.gameObject.activeSelf)
+		{
+			renderer.material.SetColor("" ,colorPicker.TheColor);
+		}
     }
 }
